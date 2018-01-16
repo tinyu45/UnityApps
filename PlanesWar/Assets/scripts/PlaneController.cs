@@ -35,7 +35,9 @@ public class PlaneController : MonoBehaviour {
 		if (sheji) {
 			timer += Time.deltaTime;
 			if (timer >= fsdel) {
-				Object obj = Resources.Load ("bullet");
+				//Object obj = Resources.Load ("bullet"); //第一关
+				Object obj = Resources.Load ("bullet"); //第二关
+				//Object obj = Resources.Load ("bullet4"); // 第三关 
 				GameObject bullet = GameObject.Instantiate (obj) as GameObject;
 				bullet.transform.position = bulletPoint.transform.position;
 				timer = 0;

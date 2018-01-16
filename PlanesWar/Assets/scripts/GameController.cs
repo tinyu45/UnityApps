@@ -14,7 +14,10 @@ public class GameController : MonoBehaviour {
 		PLAYING,
 		PAUSE,
 		OVER
+
 	}
+
+	public static string[] enemys;
 
 	public GAMESTATE state=GAMESTATE.PLAYING;
 
@@ -35,6 +38,7 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		enemys =new string[]{"enemy5","enemy4","enemy","enemy3","enemy2"};
        // InvokeRepeating("createEnemy", 0, 2);
 		GetComponent<AudioManger> ().PlayMusic ("bgm_kaichangdonghua");
 	}
@@ -83,9 +87,10 @@ public class GameController : MonoBehaviour {
 
 
 	void createEnemy() {
+		string enemyName=enemys[Random.Range (0, enemys.Length)];
 		timer += Time.deltaTime;
 		if (timer >= 2) {
-			Object obj = Resources.Load("enemy");
+			Object obj = Resources.Load(enemyName);
 			GameObject enemy = Instantiate(obj) as GameObject;
 			timer = 0;
 		} 
@@ -115,6 +120,23 @@ public class GameController : MonoBehaviour {
 	}
 
 
+
+	//{"enemy5","enemy4","enemy","enemy3","enemy2"}
+	public static int findAttack(Object enemy){
+		string name = enemy.name;
+		switch (name.Substring (0, name.IndexOf ("("))) {
+		case"enemy":
+			return 8;
+		case"enemy4":
+			return 3;
+		case"enemy3":
+			return 5;
+		case"enemy2":
+			return 10;
+		default:
+			return 2;
+		}
+	}
 
 
 }
