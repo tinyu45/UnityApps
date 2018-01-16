@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\scripts\Car.cs" />
      <Compile Include="Assets\scripts\Road.cs" />
+     <Compile Include="Assets\scripts\test.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity 5.5.4/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
