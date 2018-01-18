@@ -21,6 +21,7 @@ public class PlayMusic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Screen.SetResolution (683, 384, false);
 		lrc.initLrc ();
 		progress.maxValue = source.clip.length; //歌曲总时长
 	}

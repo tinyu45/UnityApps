@@ -41,7 +41,7 @@ public class LrcController : MonoBehaviour {
 
     //解析歌词
     void ParseLrc(int index, ref List<string> lrcs, ref List<float> times) {
-        print(index);
+        //print(index);
         //清空
         lrcs.Clear();
         times.Clear();

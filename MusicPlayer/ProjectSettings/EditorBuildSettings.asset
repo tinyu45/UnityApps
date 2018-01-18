@@ -5,7 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/MusicPlayer.unity
   - enabled: 1
     path: Assets/MYPlayer.unity
+    guid: 9885135eb5948894984e2295f82b497a
