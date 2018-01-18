@@ -37,16 +37,18 @@ public class EnemyController : MonoBehaviour {
 		if(col2D.gameObject.tag=="Bullet"){
 			
 			GameObject bomb = Instantiate(Resources.Load("bomb")) as GameObject;  //爆炸动画
-			bomb.transform.position = this.gameObject.transform.position;
+			Vector3 bompos=new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y-0.3f, 0);
+			bomb.transform.position = bompos;
 			attack--;
-			print (attack);
+			//print (attack);
 			if (attack<=0) {
+				FindObjectOfType<GameController> ().updateScore (GameController.findAttack (this.gameObject)*2); //更新得分
 				Destroy (this.gameObject);
 			}
-			//销毁敌机
-			Destroy(col2D.gameObject); //销毁子
 
-			FindObjectOfType<GameController> ().updateScore (); //更新得分
+			//FindObjectOfType<GameController> ().updateScore (4); //加分
+			//销毁敌机
+			Destroy(col2D.gameObject); //销毁子弹
 		}else if(col2D.gameObject.tag=="Plane"){
 			//我方飞机与敌方相撞
 			//print (col2D.transform.name);

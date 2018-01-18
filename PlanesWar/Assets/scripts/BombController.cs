@@ -19,6 +19,7 @@ public class BombController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		Play (GameController.isPlaying);
     }
 

@@ -11,17 +11,21 @@ public class GameController : MonoBehaviour {
 
 		//定义游戏状态枚举
 	public enum GAMESTATE{
-		PLAYING,
+		FIRST,
 		PAUSE,
-		OVER
-
+		PLAYING
 	}
 
-	public static string[] enemys;
+	public static string[,] enemys;
 
-	public GAMESTATE state=GAMESTATE.PLAYING;
+	public GAMESTATE state;
 
-	public static bool isPlaying=true;
+	public static bool isPlaying=false;
+
+	public static bool hasReword=false;
+
+	///private bool huogaun=false;
+	public int gs=1;
 
 	//分数显示UI;
 	public Text scoreBox;
@@ -32,21 +36,62 @@ public class GameController : MonoBehaviour {
 
     public GameObject plane;   //我方飞机
 
+	public static int reward=0;
+
     public float speed = 1;
 
 	float timer=0;
 
+	float rewardTime=0;
+
+	float demusic=0;
+
     // Use this for initialization
     void Start () {
-		enemys =new string[]{"enemy5","enemy4","enemy","enemy3","enemy2"};
-       // InvokeRepeating("createEnemy", 0, 2);
-		GetComponent<AudioManger> ().PlayMusic ("bgm_kaichangdonghua");
+		gs = 1;
+		reward = 0; //开局为0
+		demusic=0;
+		state = GAMESTATE.FIRST;
+		enemys = new string[4,5] {
+			{ "enemy5","enemy4", "enemy","enemy5","enemy4"},
+			{"enemy4","enemy4","enemy","enemy3","enemy"},
+			{"enemy5","enemy4", "enemy","enemy3", "enemy2"},
+			{"enemy3","enemy4", "enemy","enemy3", "enemy2"}
+		};
+		InvokeRepeating("GennerateBaoVox", 0, 20);
+		GetComponent<AudioManger> ().PlaySound ("readygo");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (demusic <= 2 && state==GAMESTATE.FIRST) {
+			demusic+=Time.deltaTime;
+		} else if(state!=GAMESTATE.PAUSE){
+			isPlaying = true;
+			state = GAMESTATE.PLAYING;
+		}
+
 		if (isPlaying) {
+			GetComponent<AudioManger> ().PlayMusic ("bgm_kaichangdonghua");
 			createEnemy (); //生成敌人
+			if (hasReword) {
+				plane.GetComponent<PlaneController> ().changeface (reward);
+				hasReword = false;
+				rewardTime = 0;
+			} else {
+				if((reward>0)&&(rewardTime <=(2-reward)*15+5)){
+					if (reward > 2) {
+						reward = 0;
+						rewardTime = 0;
+					}
+					rewardTime += Time.deltaTime;
+				} else if(rewardTime>(2-reward)*15+5){
+					reward--;
+					hasReword = true;
+				}
+			} 
+
+
 
 			//plane.transform.position = Input.touches [0].position;
 			/*
@@ -87,7 +132,8 @@ public class GameController : MonoBehaviour {
 
 
 	void createEnemy() {
-		string enemyName=enemys[Random.Range (0, enemys.Length)];
+		//print (enemys.GetLength (1));
+		string enemyName=enemys[gs-1,Random.Range (0, enemys.GetLength(1))];
 		timer += Time.deltaTime;
 		if (timer >= 2) {
 			Object obj = Resources.Load(enemyName);
@@ -95,11 +141,34 @@ public class GameController : MonoBehaviour {
 			timer = 0;
 		} 
 	}
+
+	void GennerateBaoVox(){
+		Object obj = Resources.Load ("baovox");
+		Instantiate (obj);
+	}
     
 
 	//更新分数
-	public void updateScore(){
+	public void updateScore(int attack){
 		score += 5;
+		switch (score) {
+		case 200:
+			FindObjectOfType<BGScrollController> ().ChangeBg (1);  //换场景
+			AudioManger.Instance.ChangeMusic ("bgm_zhandou1"); 
+			gs = 2;
+			break;
+		case 400:
+			FindObjectOfType<BGScrollController> ().ChangeBg (2);
+			AudioManger.Instance.ChangeMusic ("bgm_kaichangdonghua");
+			gs = 3;
+			break;
+		case 800:
+			FindObjectOfType<BGScrollController> ().ChangeBg (3);
+			AudioManger.Instance.ChangeMusic ("bgm_zhandou2");
+			gs = 4;
+			break;
+		default: break;
+		}
 		scoreBox.text = "当前得分：" + score;
 	}
 
@@ -126,13 +195,13 @@ public class GameController : MonoBehaviour {
 		string name = enemy.name;
 		switch (name.Substring (0, name.IndexOf ("("))) {
 		case"enemy":
-			return 8;
+			return 5;
 		case"enemy4":
 			return 3;
 		case"enemy3":
-			return 5;
+			return 8;
 		case"enemy2":
-			return 10;
+			return 12;
 		default:
 			return 2;
 		}

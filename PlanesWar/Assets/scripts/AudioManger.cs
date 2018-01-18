@@ -7,11 +7,17 @@ public class AudioManger : MonoBehaviour {
 	public static AudioManger Instance;
 	public AudioSource Music;
 	public AudioSource Sound;
+
 	// Use this for initialization
 	void Start () {
 		Instance = this;
 	}
 
+	//切换音乐
+	public void ChangeMusic(string musicname){
+		SwitchPlayState ();
+		PlayMusic (musicname);
+	}
 
 	public void PlayMusic(string musicName){
 		if (!Music.isPlaying) {
@@ -24,6 +30,7 @@ public class AudioManger : MonoBehaviour {
 	public void StopMusic(){
 		Music.Stop ();
 	}
+
 	public void SwitchPlayState(){
 		if (Music.isPlaying) {
 			Music.Pause ();
