@@ -16,6 +16,7 @@ public class LRC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Screen.SetResolution (800, 450, false);
 	}
 
 
