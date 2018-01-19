@@ -11,7 +11,8 @@ public class StartScrollController : MonoBehaviour {
 	public float timer = 0;
 	// Use this for initialization
 	void Start () {
-		
+		//自定义屏幕分辨率
+		Screen.SetResolution(432,768,false); //整数
 	}
 	
 	// Update is called once per frame

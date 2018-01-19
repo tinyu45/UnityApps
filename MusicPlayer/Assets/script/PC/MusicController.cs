@@ -42,6 +42,7 @@ public class MusicController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		Screen.SetResolution (800, 450, false);
 		volume.value = 0.5f;
         curIndex = 0;
         singerbox.sprite = singers[curIndex];
@@ -129,6 +130,9 @@ public class MusicController : MonoBehaviour {
 		if (volume.value != 1) {
 			soud = volume.value.ToString ("0.00");
 			soud=soud.Substring(soud.IndexOf(".")+1)+"%";
+		}
+		if (volume.value == 0) {
+			soud = "0%";
 		}
 		//print (soud);
 		bai.text=soud;

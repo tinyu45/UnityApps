@@ -30,6 +30,7 @@ public class LrcController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //初始化
+		Screen.SetResolution (800, 450, false);
         lrcs = new List<string>();
         times = new List<float>();
 	}
