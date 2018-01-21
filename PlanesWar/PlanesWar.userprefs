@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\AudioManger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\StartScrollController.cs">
     <Files>
       <File FileName="Assets\scripts\BombController.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\GameController.cs" Line="1" Column="1" />
@@ -10,7 +10,7 @@
       <File FileName="Assets\scripts\SceneController.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\PlaneController.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\StartScrollController.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\StartScrollController.cs" Line="14" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

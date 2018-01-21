@@ -1,16 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Road.cs">
-    <Files>
-      <File FileName="Assets\scripts\Car.cs" Line="25" Column="3" />
-      <File FileName="Assets\scripts\Road.cs" Line="13" Column="18" />
-=======
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Car.cs">
     <Files>
-      <File FileName="Assets\scripts\Car.cs" Line="27" Column="8" />
-      <File FileName="Assets\scripts\Road.cs" Line="11" Column="2" />
->>>>>>> 8170c1f2f3a3235899527b1f40d495c172cc2f66
+      <File FileName="Assets\scripts\Car.cs" Line="43" Column="1" />
+      <File FileName="Assets\scripts\enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Road.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
